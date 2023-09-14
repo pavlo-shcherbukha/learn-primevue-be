@@ -59,6 +59,9 @@ module.exports = function (app) {
           throw new apperror.ApplicationError("Array has length 0",  code="NoDataFound",  target="GET-TODO-2", status_code=422, payload={})
         }
         const indx = todos.findIndex(todo => todo.id === todoid);
+        if (indx <0){
+          throw new apperror.ApplicationError(`Record with id ${todoid} not found`,  code="RecordNotFound",  target="put-TODO-2", status_code=422, payload=todo)  
+        }         
         todos.splice(indx, indx >= 0 ? 1 : 0);
         return res.status(200).json({ok: true, id: todoid })                                              
       }
@@ -149,21 +152,24 @@ router.post('/', function(req, res, next) {
     } else if (todos.length===0){
       throw new apperror.ApplicationError("Array has length 0",  code="NoDataFound",  target="put-TODO-2", status_code=422, payload={})
     } else if(!todo.hasOwnProperty("user_id")){
-      throw new apperror.ValodationError("Missing key [user_id]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
+      throw new apperror.ValidationError("Missing key [user_id]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
     } else if(!todo.hasOwnProperty("title")){
-      throw new apperror.ValodationError("Missing key [title]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
+      throw new apperror.ValidationError("Missing key [title]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
     } else if(!todo.hasOwnProperty("due_on")){
-      throw new apperror.ValodationError("Missing key [due_on]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
+      throw new apperror.ValidationError("Missing key [due_on]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
     } else if(!todo.hasOwnProperty("status")){
-      throw new apperror.ValodationError("Missing key [status]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
+      throw new apperror.ValidationError("Missing key [status]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
     } else if(!todo.hasOwnProperty("id")){
-      throw new apperror.ValodationError("Missing key [id]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
+      throw new apperror.ValidationError("Missing key [id]",  code="ValidationRequest",  target="put-TODO-2", status_code=422, payload=todo)
     } else {
       //let idMax = Math.max.apply(null, todos.map(function(o) { return o.id; }));
       //todo.id = idMax + 1;
       //app.get("todo").data.push( todo );
       let todoid= todo.id
       const indx = todos.findIndex(todo => todo.id === todoid);
+      if (indx <0){
+        throw new apperror.ApplicationError(`Record with id ${todoid} not found`,  code="RecordNotFound",  target="put-TODO-2", status_code=422, payload=todo)  
+      } 
       app.get("todo").data[indx]=todo;
     }
 
