@@ -143,3 +143,30 @@ Id calculated  as max id value in the list of objects.
 }
 
 ```
+
+## Start on your laptop
+
+- clone the repository
+- install dependensy
+
+```bash
+npm install
+```
+- start 
+
+```bash
+npm start
+```
+
+The application is accessed on url: http://localhost:8081/
+
+The port could be changed  in .env file
+
+- .env
+
+```text
+## local config
+PORT=8081
+
+```
+
