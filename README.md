@@ -161,7 +161,7 @@ http sttus code = 422
       "title": "!!!Currus solio creta trado contigo varietas vix auctor.",
       "due_on": "2023-09-22T00:00:00.000+05:30",
       "status": "pending",
-      "stack": "ApplicationError: Record with id 2600000 not found\n    at \\routes\\todo.js:171:15\n    at Layer.handle [as handle_request] (\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next 
+      "stack": "ApplicationError: Record with id 2600000 not found\n    at \\routes\\todo.js:171:15\n    at Layer.handle [as handle_request] (\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next" 
     }
   }
 }
