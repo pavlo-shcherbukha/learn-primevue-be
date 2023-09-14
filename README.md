@@ -144,6 +144,30 @@ Id calculated  as max id value in the list of objects.
 
 ```
 
+### Error processing
+
+In case of application error response is the following:
+http sttus code = 422
+
+```json
+{
+  "Error": {
+    "code": "RecordNotFound",
+    "description": "Record with id 2600000 not found",
+    "target": "put-TODO-2",
+    "Inner": {
+      "id": 2600000,
+      "user_id": 5132764,
+      "title": "!!!Currus solio creta trado contigo varietas vix auctor.",
+      "due_on": "2023-09-22T00:00:00.000+05:30",
+      "status": "pending",
+      "stack": "ApplicationError: Record with id 2600000 not found\n    at \\routes\\todo.js:171:15\n    at Layer.handle [as handle_request] (\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next 
+    }
+  }
+}
+
+```
+
 ## Start on your laptop
 
 - clone the repository
